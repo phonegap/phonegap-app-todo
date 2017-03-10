@@ -1,10 +1,7 @@
 <template>
-  <!--<f7-page with-subnavbar>-->
-  <f7-page>
-    <!-- check out why this is going on with the sliding attribute not showing the navbar on ios when the v-if is in there -->
+  <f7-page with-subnavbar>
     <!--<f7-navbar title="Home" sliding />-->
-    <!--<f7-navbar v-if="isiOS" sliding>-->
-    <f7-navbar sliding>
+    <f7-navbar v-if="isiOS" sliding>
       <f7-nav-left>
         <f7-link icon-f7="bars" open-panel="left"></f7-link>
       </f7-nav-left>
@@ -20,7 +17,7 @@
         <f7-link :icon-f7="isiOS ? 'check' : ''" text="Completed" tab-link="#completed"></f7-link>
     </f7-toolbar>
 
-    <!--<f7-tabs swipeable>-->
+    <!--<f7-tabs swipeable> can't do this or swipeout won't work properly -->
     <f7-tabs>
       <f7-tab id="pending" active>
         <pending-page />

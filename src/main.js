@@ -39,38 +39,6 @@ if (window.isiOS) {
 }
 require('framework7-icons/css/framework7-icons.css');
 
-// Set up fetch and store for the todo list items
-// var STORAGE_KEY = 'pg-todos'
-// var todoStorage = {
-//   fetch: function () {
-//     var todos = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]')
-//     todos.forEach(function (todo, index) {
-//       todo.id = index
-//     })
-//     todoStorage.uid = todos.length
-//     return todos
-//   },
-//   save: function (todos) {
-//     localStorage.setItem(STORAGE_KEY, JSON.stringify(todos))
-//   }
-// }
-
-// // visibility filters
-// var filters = {
-//   all: function (todos) {
-//     return todos
-//   },
-//   active: function (todos) {
-//     return todos.filter(function (todo) {
-//       return !todo.completed
-//     })
-//   },
-//   completed: function (todos) {
-//     return todos.filter(function (todo) {
-//       return todo.completed
-//     })
-//   }
-// }
 
 // Init F7 Vue Plugin
 Vue.use(Framework7Vue);
@@ -104,6 +72,39 @@ new Vue({ // eslint-disable-line no-new
     app: App,
   },
 });
+
+// Set up fetch and store for the todo list items
+const STORAGE_KEY = 'pg-todos';
+// const todoStorage = {
+//   fetch() {
+//     const todos = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
+//     todos.forEach(todo, index =>
+// todo.id = index
+//     )
+//     todoStorage.uid = todos.length;
+//     return todos;
+//   },
+//   save(todos) {
+//     localStorage.setItem(STORAGE_KEY, JSON.stringify(todos));
+//   },
+// };
+// visibility filters
+// const filters = {
+//   all(todos) {
+//     return todos;
+//   },
+//   active(todos) {
+//     return todos.filter(todo => {
+//       return !todo.completed;
+//     })
+//   },
+//   completed(todos) {
+//     return todos.filter((todo) => {
+//       return todo.completed;
+//     })
+//   },
+// };
+
 
 // Ye olde Device Ready
 document.addEventListener('deviceready', () => {
