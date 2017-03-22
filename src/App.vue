@@ -32,21 +32,16 @@
 
   export default {
     components: {
-      'todo-item': TodoItem,
-    },
-    data() {
-      return {
-        todos: this.todos,
-      };
+      'todo-item': TodoItem
     },
     name: 'App',
     computed: {
-      isiOS() {
+      isiOS () {
         return window.isiOS;
       },
-      platformClass() {
+      platformClass () {
         return window.isiOS ? 'ios' : 'material';
-      },
-    },
+      }
+    }
   };
 </script>

@@ -33,22 +33,20 @@
 <script>
   import Pending from './Pending';
   import Completed from './Completed';
-  // import Services from './Services';
-
+  
   export default {
     name: 'Tabs',
     components: {
       'pending-page': Pending,
-      'completed-page': Completed,
-      // 'services-page': Services,
+      'completed-page': Completed
     },
     computed: {
-      isiOS() {
+      isiOS () {
         return window.isiOS;
       },
-      isMaterial() {
+      isMaterial () {
         return window.isMaterial;
-      },
-    },
+      }
+    }
   };
 </script>

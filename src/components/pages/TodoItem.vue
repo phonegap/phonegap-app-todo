@@ -28,35 +28,37 @@
         </f7-card-content>            
     </f7-card>
     
-    <f7-button @click="addTodo" color="green" class="btn" style="float: right" fill close-popup="#popup-new">Done</f7-button>          
+    <f7-button @click="addNewTodo" color="green" class="btn" style="float: right" fill close-popup="#popup-new">Done</f7-button>          
     </f7-popup>    
 </template>
 
 <script>
+import { addTodo } from '../../utils/todos';
 export default {
   name: 'todo-item',
-  props: ['todos'],
-  data() {
+  data () {
     return {
+      id: '',
       todo: '',
       category: '',
       desc: '',
       highlight: '',
-      urgent: '',
-      // todos: this.todos,
+      urgent: ''
     };
   },
   methods: {
-    addTodo() {
-      const item = { name: this.todo,
+    addNewTodo () {
+      const item = { id: window.store.todos.length,
+        todo: this.todo,
         category: this.category,
         desc: this.desc,
         highlight: this.highlight,
-        urgent: this.urgent };
-      this.todos.push(item);
+        urgent: this.urgent,
+        completed: false };
       // clear form fields
-      this.todo = ''; this.cateogry = ''; this.desc = ''; this.hightlight = ''; this.urgent = '';
-    },
-  },
+      addTodo(item);
+      this.todo = ''; this.category = ''; this.desc = ''; this.hightlight = ''; this.urgent = '';
+    }
+  }
 };
 </script>

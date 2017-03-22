@@ -39,7 +39,6 @@ if (window.isiOS) {
 }
 require('framework7-icons/css/framework7-icons.css');
 
-
 // Init F7 Vue Plugin
 Vue.use(Framework7Vue);
 
@@ -55,56 +54,49 @@ new Vue({ // eslint-disable-line no-new
     material: window.isMaterial,
     animateNavBackIcon: window.isiOS,
     pushState: true,
-    pushStateNoAnimation: true,
+    pushStateNoAnimation: true
   },
   // app initial state
   data: {
     // todos: todoStorage.fetch(),
     newTodo: '',
     editedTodo: null,
-    visibility: 'all',
+    visibility: 'all'
   },
   // App root methods
   methods: {
   },
   // Register App Component
   components: {
-    app: App,
-  },
+    app: App
+  }
 });
 
-// Set up fetch and store for the todo list items
-const STORAGE_KEY = 'pg-todos';
-// const todoStorage = {
-//   fetch() {
-//     const todos = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
-//     todos.forEach(todo, index =>
-// todo.id = index
-//     )
-//     todoStorage.uid = todos.length;
-//     return todos;
-//   },
-//   save(todos) {
-//     localStorage.setItem(STORAGE_KEY, JSON.stringify(todos));
-//   },
-// };
 // visibility filters
-// const filters = {
-//   all(todos) {
-//     return todos;
-//   },
-//   active(todos) {
-//     return todos.filter(todo => {
-//       return !todo.completed;
-//     })
-//   },
-//   completed(todos) {
-//     return todos.filter((todo) => {
-//       return todo.completed;
-//     })
-//   },
-// };
+const filters = {
+  all (todos) {
+    return todos;
+  },
+  active (todos) {
+    return todos.filter(todo => {
+      return !todo.completed;
+    });
+  },
+  completed (todos) {
+    console.log('Todos len ' + todos);
+    return todos.filter((todo) => {
+      console.log('Todo check ' + todo);
+      return todo.completed;
+    });
+  }
+};
 
+// Set up fetch and store for the todo list items
+// Import utils
+import {todoStorage, todos} from './utils/todos';
+window.store = {
+  todos: todoStorage.fetch()
+};
 
 // Ye olde Device Ready
 document.addEventListener('deviceready', () => {
