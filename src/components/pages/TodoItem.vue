@@ -40,7 +40,7 @@ export default {
     return {
       id: '',
       todo: '',
-      category: '',
+      category: 'No Category',
       desc: '',
       highlight: '',
       urgent: ''

@@ -39,6 +39,10 @@ if (window.isiOS) {
 }
 require('framework7-icons/css/framework7-icons.css');
 
+import {todoStorage, todos} from './utils/todos';
+window.store = {
+  todos: todoStorage.fetch()
+};
 // Init F7 Vue Plugin
 Vue.use(Framework7Vue);
 
@@ -88,15 +92,38 @@ const filters = {
       console.log('Todo check ' + todo);
       return todo.completed;
     });
+  },
+  categories (todos) {
+    return todos.filter((todo) => {
+      console.log('Todo category ' + todo.category);
+      return todo.category;
+    });
   }
 };
 
+// const favorites = filters.categories(todos);
+
 // Set up fetch and store for the todo list items
 // Import utils
-import {todoStorage, todos} from './utils/todos';
-window.store = {
-  todos: todoStorage.fetch()
-};
+// import {todoStorage, todos} from './utils/todos';
+// window.store = {
+//   todos: todoStorage.fetch()
+  // categories: this.filters.categories(todos)
+  // categories (window.store.todos) {
+  // getCategories: function () {
+  //   const cats = [];
+  //   todos.filter((todo) => {
+  //     console.log('Todo category ' + todo.category);
+  //     cats.push(todo.category);
+  //     // return todo.category;
+  //   });
+  //   return cats;
+    // return window.store.todos.filter((todo) => {
+    //   console.log('Todo category ' + todo.category);
+    //   return todo.category;
+    // })
+  // }
+// };
 
 // Ye olde Device Ready
 document.addEventListener('deviceready', () => {

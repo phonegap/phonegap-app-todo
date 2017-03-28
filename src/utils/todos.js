@@ -35,3 +35,15 @@ export function toggleTodo (key) {
   console.log('Toggle item with key of ' + key);
   saveTodosToLocalStorage();
 }
+
+export function getCategories () {
+  const cats = [];
+  store.todos.filter((todo) => {
+    console.log('Todo category ' + todo.category);
+    if (cats.indexOf(todo.category) === -1) {
+      cats.push(todo.category);
+      // return todo.category;
+    }
+  });
+  return cats;
+}
