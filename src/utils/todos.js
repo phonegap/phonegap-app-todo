@@ -1,6 +1,7 @@
 /* global store localStorage */
 const STORAGE_KEY = 'pg-todos';
 export const todoStorage = {
+  categories: [],
   fetch () {
     const todos = JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]');
     for (var x = 0; x < todos.length; x++) {
@@ -8,15 +9,33 @@ export const todoStorage = {
       todos[x].id = x;
     }
     todoStorage.uid = todos.length;
+    this.addCategories(todos); // Add the initial set of categories
     return todos;
   },
   save (todos) {
     localStorage.setItem(STORAGE_KEY, JSON.stringify(todos));
+  },
+  addCategories (todos) {
+    todos.filter((todo) => {
+      console.log('Checking the Todo category ' + todo.category);
+      if (this.categories.indexOf(todo.category) === -1) {
+        console.log('Added new category ' + todo.category);
+        this.categories.push(todo.category);
+      }
+    });
   }
 };
 
 export function addTodo (todo) {
   store.todos.push(todo);
+  console.log('Added todo with category ' + todo.category);
+  store.todos.filter((todo) => {
+    console.log('Checking Todo category ' + todo.category);
+    if (store.state.categories.indexOf(todo.category) === -1) {
+      console.log('Added new category ' + todo.category);
+      store.state.categories.push(todo.category);
+    }
+  });
   saveTodosToLocalStorage();
 }
 
@@ -34,16 +53,4 @@ export function toggleTodo (key) {
   store.todos[key].completed = !store.todos[key].completed;
   console.log('Toggle item with key of ' + key);
   saveTodosToLocalStorage();
-}
-
-export function getCategories () {
-  const cats = [];
-  store.todos.filter((todo) => {
-    console.log('Todo category ' + todo.category);
-    if (cats.indexOf(todo.category) === -1) {
-      cats.push(todo.category);
-      // return todo.category;
-    }
-  });
-  return cats;
 }

@@ -1,6 +1,6 @@
 /* global window document f7 */
-
-import 'whatwg-fetch';
+// TODO - Remove below - not in template now right?
+// import 'whatwg-fetch';
 
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
@@ -39,10 +39,28 @@ if (window.isiOS) {
 }
 require('framework7-icons/css/framework7-icons.css');
 
-import {todoStorage, todos} from './utils/todos';
+import { todoStorage } from './utils/todos';
+
 window.store = {
-  todos: todoStorage.fetch()
+  todos: todoStorage.fetch(),
+  state: {
+    selectedCategory: 'No Category',
+    categories: todoStorage.categories
+  },
+  changeCategory (category) {
+    this.state.selectedCategory = category;
+    console.log('Changed category to ' + category + ' store category is ' + this.state.selectedCategory);
+  },
+  getCategories () {
+    this.todos.filter((todo) => {
+      console.log('Filtering the Todo category ' + todo.category);
+      if (this.state.categories.indexOf(todo.category) === -1) {
+        this.state.categories.push(todo.category);
+      }
+    });
+  }
 };
+
 // Init F7 Vue Plugin
 Vue.use(Framework7Vue);
 
@@ -62,7 +80,6 @@ new Vue({ // eslint-disable-line no-new
   },
   // app initial state
   data: {
-    // todos: todoStorage.fetch(),
     newTodo: '',
     editedTodo: null,
     visibility: 'all'
@@ -77,29 +94,29 @@ new Vue({ // eslint-disable-line no-new
 });
 
 // visibility filters
-const filters = {
-  all (todos) {
-    return todos;
-  },
-  active (todos) {
-    return todos.filter(todo => {
-      return !todo.completed;
-    });
-  },
-  completed (todos) {
-    console.log('Todos len ' + todos);
-    return todos.filter((todo) => {
-      console.log('Todo check ' + todo);
-      return todo.completed;
-    });
-  },
-  categories (todos) {
-    return todos.filter((todo) => {
-      console.log('Todo category ' + todo.category);
-      return todo.category;
-    });
-  }
-};
+// const filters = {
+//   all (todos) {
+//     return todos;
+//   },
+//   active (todos) {
+//     return todos.filter(todo => {
+//       return !todo.completed;
+//     });
+//   },
+//   completed (todos) {
+//     console.log('Todos len ' + todos);
+//     return todos.filter((todo) => {
+//       console.log('Todo check ' + todo);
+//       return todo.completed;
+//     });
+//   },
+//   categories (todos) {
+//     return todos.filter((todo) => {
+//       console.log('Todo category ' + todo.category);
+//       return todo.category;
+//     });
+//   }
+// };
 
 // const favorites = filters.categories(todos);
 

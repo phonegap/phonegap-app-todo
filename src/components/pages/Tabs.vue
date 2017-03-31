@@ -40,6 +40,11 @@
       'pending-page': Pending,
       'completed-page': Completed
     },
+    data () {
+      return {
+        selCategory: window.store.selectedCategory
+      };
+    },
     computed: {
       isiOS () {
         return window.isiOS;

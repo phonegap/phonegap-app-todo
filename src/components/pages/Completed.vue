@@ -3,8 +3,7 @@
     <!-- Scrollable page content-->
     <f7-block-title>{{ title }}</f7-block-title>  
     <f7-list v-if="todos.length > 0">
-      <f7-list-item v-for="(todo, key) in todos" :key="key" v-bind:todo="todo"
-      :checked="(todo.completed ? true : false)" v-show="todo.completed"
+      <f7-list-item v-for="(todo, key) in todos" :key="key" :checked="(todo.completed ? true : false)" v-if="displayItem(todo)"
       @click="onToggle(key)" :title="todo.todo" swipeout @swipeout:deleted="onItemDeleted(todo)" checkbox>
       <f7-swipeout-actions>
         <f7-swipeout-button close @click="onItemDeleted(todo)" color="red">Delete</f7-swipeout-button>        
@@ -22,16 +21,20 @@
     data () {
       return {
         title: 'Completed Items',
-        todos: window.store.todos
+        todos: window.store.todos,
+        sharedState: window.store.state
       };
     },
     methods: {
       onItemDeleted (todo) {
         removeTodo(todo);
       },
-      // Set completed status
-      onToggle: function (key) {
+      // Toggle completed status
+      onToggle (key) {
         toggleTodo(key);
+      },
+      displayItem (todo) {
+        return (todo.completed) && (todo.category === this.sharedState.selectedCategory || this.sharedState.selectedCategory === 'All');
       }
     }
   };

@@ -40,7 +40,7 @@ export default {
     return {
       id: '',
       todo: '',
-      category: 'No Category',
+      category: '',
       desc: '',
       highlight: '',
       urgent: ''
@@ -50,12 +50,13 @@ export default {
     addNewTodo () {
       const item = { id: window.store.todos.length,
         todo: this.todo,
-        category: this.category,
+        category: this.category.length > 0 ? this.category : 'No Category',
         desc: this.desc,
         highlight: this.highlight,
         urgent: this.urgent,
         completed: false };
       // clear form fields
+      console.log('Category added for todo ' + item.category);
       addTodo(item);
       this.todo = ''; this.category = ''; this.desc = ''; this.hightlight = ''; this.urgent = '';
     }
