@@ -1,6 +1,4 @@
 /* global window document f7 */
-// TODO - Remove below - not in template now right?
-// import 'whatwg-fetch';
 
 // The Vue build version to load with the `import` command
 // (runtime-only or standalone) has been set in webpack.base.conf with an alias.
@@ -92,55 +90,6 @@ new Vue({ // eslint-disable-line no-new
     app: App
   }
 });
-
-// visibility filters
-// const filters = {
-//   all (todos) {
-//     return todos;
-//   },
-//   active (todos) {
-//     return todos.filter(todo => {
-//       return !todo.completed;
-//     });
-//   },
-//   completed (todos) {
-//     console.log('Todos len ' + todos);
-//     return todos.filter((todo) => {
-//       console.log('Todo check ' + todo);
-//       return todo.completed;
-//     });
-//   },
-//   categories (todos) {
-//     return todos.filter((todo) => {
-//       console.log('Todo category ' + todo.category);
-//       return todo.category;
-//     });
-//   }
-// };
-
-// const favorites = filters.categories(todos);
-
-// Set up fetch and store for the todo list items
-// Import utils
-// import {todoStorage, todos} from './utils/todos';
-// window.store = {
-//   todos: todoStorage.fetch()
-  // categories: this.filters.categories(todos)
-  // categories (window.store.todos) {
-  // getCategories: function () {
-  //   const cats = [];
-  //   todos.filter((todo) => {
-  //     console.log('Todo category ' + todo.category);
-  //     cats.push(todo.category);
-  //     // return todo.category;
-  //   });
-  //   return cats;
-    // return window.store.todos.filter((todo) => {
-    //   console.log('Todo category ' + todo.category);
-    //   return todo.category;
-    // })
-  // }
-// };
 
 // Ye olde Device Ready
 document.addEventListener('deviceready', () => {

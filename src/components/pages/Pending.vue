@@ -1,7 +1,7 @@
 <template>
   <div>
     <!-- Scrollable page content-->
-    <f7-block-title>{{ title }}</f7-block-title>   
+    <f7-block-title>{{ title }}</f7-block-title> 
     <f7-list v-if="todos.length > 0">      
       <f7-list-item v-if="displayItem(todo)" v-for="(todo, key) in todos" :key="key" 
         :checked="(todo.completed ? true : false)"

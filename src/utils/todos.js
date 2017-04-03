@@ -17,9 +17,7 @@ export const todoStorage = {
   },
   addCategories (todos) {
     todos.filter((todo) => {
-      console.log('Checking the Todo category ' + todo.category);
       if (this.categories.indexOf(todo.category) === -1) {
-        console.log('Added new category ' + todo.category);
         this.categories.push(todo.category);
       }
     });
@@ -46,6 +44,11 @@ export function saveTodosToLocalStorage () {
 export function removeTodo (todo) {
   var idx = store.todos.indexOf(todo);
   store.todos.splice(idx, 1);
+  var elem = document.getElementById(todo.category);
+  if (elem != null) {
+    var catIndex = store.todos.indexOf(todo);
+    store.state.categories.splice(catIndex, 1);
+  }
   saveTodosToLocalStorage();
 }
 
