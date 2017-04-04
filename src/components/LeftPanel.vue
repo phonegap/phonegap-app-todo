@@ -28,10 +28,14 @@
     methods: {
       filterCategory (cat) {
         var elem2 = document.getElementById(this.prevCat);
-        elem2.removeAttribute('class', 'bg-blue');
+        if (elem2 != null) {
+          elem2.removeAttribute('class', 'bg-blue');
+        }
         window.store.changeCategory(cat);
         var elem = document.getElementById(cat);
-        elem.setAttribute('class', 'bg-blue');
+        if (elem != null) {
+          elem.setAttribute('class', 'bg-blue');
+        }
         this.prevCat = cat;
       }
     },

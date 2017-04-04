@@ -19,8 +19,10 @@ module.exports = {
   },
   output: {
     path: config.build.assetsRoot,
+    // path: config.dev.assetsRoot,
+    // path: process.env.NODE_ENV === 'production' ? config.build.assetsRoot : config.dev.assetsRoot,
     publicPath: process.env.NODE_ENV === 'production' ? config.build.assetsPublicPath : config.dev.assetsPublicPath,
-    filename: '[name].js',
+    filename: '[name].js',    
   },
   resolve: {
     extensions: ['', '.js', '.vue', '.json'],

@@ -38,6 +38,13 @@ if (window.isiOS) {
 require('framework7-icons/css/framework7-icons.css');
 
 import { todoStorage } from './utils/todos';
+// import runtime from 'serviceworker-webpack-plugin/lib/runtime';
+
+if ('serviceWorker' in navigator) {
+  // const registration = runtime.register();
+  console.log('SErvice worker register called');
+  navigator.serviceWorker.register('/my-service-worker.js');
+} else console.log('SErvice worker note found in navigator');
 
 window.store = {
   todos: todoStorage.fetch(),
