@@ -10,7 +10,6 @@ platforms/ios
 platforms/android
 plugins/
 
-www
 
 Thumbs.db
 *.DS_Store
