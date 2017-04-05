@@ -6,8 +6,8 @@ test/unit/coverage
 test/e2e/reports
 selenium-debug.log
 
-
-platforms/
+platforms/ios
+platforms/android
 plugins/
 
 www

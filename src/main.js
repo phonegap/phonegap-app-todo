@@ -42,9 +42,9 @@ import { todoStorage } from './utils/todos';
 
 if ('serviceWorker' in navigator) {
   // const registration = runtime.register();
-  console.log('SErvice worker register called');
-  navigator.serviceWorker.register('/my-service-worker.js');
-} else console.log('SErvice worker note found in navigator');
+  console.log('Registering service worker register...');
+  navigator.serviceWorker.register('./my-service-worker.js');
+} else console.log('Service worker not found in navigator');
 
 window.store = {
   todos: todoStorage.fetch(),
