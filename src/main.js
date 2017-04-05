@@ -38,18 +38,16 @@ if (window.isiOS) {
 require('framework7-icons/css/framework7-icons.css');
 
 import { todoStorage } from './utils/todos';
-// import runtime from 'serviceworker-webpack-plugin/lib/runtime';
 
 if ('serviceWorker' in navigator) {
-  // const registration = runtime.register();
-  console.log('SErvice worker register called');
-  navigator.serviceWorker.register('/my-service-worker.js');
-} else console.log('SErvice worker note found in navigator');
+  console.log('Calling to register service worker ');
+  navigator.serviceWorker.register('./my-service-worker.js');
+} else console.log('Srrvice worker not found in navigator');
 
 window.store = {
   todos: todoStorage.fetch(),
   state: {
-    selectedCategory: 'No Category',
+    selectedCategory: 'All',
     categories: todoStorage.categories
   },
   changeCategory (category) {

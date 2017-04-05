@@ -9,7 +9,7 @@
         </f7-nav-right>
     </f7-navbar>
 
-    <f7-card>
+    <f7-card class="layout-white">
         <f7-card-header>Add a new task</f7-card-header>
         <f7-card-content>            
         <f7-list form>
@@ -29,7 +29,7 @@
     </f7-card>
     
     <f7-button @click="addNewTodo" color="green" class="btn" style="float: right" fill close-popup="#popup-new">Done</f7-button>          
-    </f7-popup>    
+  </f7-popup>    
 </template>
 
 <script>

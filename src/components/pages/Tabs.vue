@@ -1,16 +1,16 @@
 <template>
-  <f7-page with-subnavbar>
-    <!--<f7-navbar title="Home" sliding />-->
-    <f7-navbar v-if="isiOS" sliding>
+  <f7-page tabbar-fixed :with-subnavbar="isMaterial">
+    <f7-navbar sliding>
       <f7-nav-left>
         <f7-link icon-f7="bars" open-panel="left"></f7-link>
       </f7-nav-left>
       <f7-nav-center>Todo List</f7-nav-center>
       <f7-nav-right>
-        <f7-link icon-f7="add" ></f7-link>
+        <f7-link icon-f7="add" open-popup="#popup-new"></f7-link>
       </f7-nav-right>
-    </f7-navbar>
+  </f7-navbar>
 
+    
     <!-- iOS TabBar has icons, Material TabBar does not -->
     <f7-toolbar tabbar :labels="isiOS">
         <f7-link :icon-f7="isiOS ? 'list' : ''" text="Pendng" tab-link="#pending" active></f7-link>

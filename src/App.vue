@@ -7,20 +7,22 @@
 
     <left-panel/>              
     <!-- Views-->
-    <f7-views toolbar-through layout="dark">
+    <f7-views toolbar-through>
       <!-- Main view-->
       <f7-view url="/" :init="true" id="main-view" :dynamic-navbar="true" navbar-through main>
-        <f7-navbar sliding>
+        
+        <f7-navbar v-if="isiOS" sliding>
           <f7-nav-left>
             <f7-link icon-f7="bars" open-panel="left"></f7-link>
           </f7-nav-left>
-          <f7-nav-center>Todo List</f7-nav-center>
+          <f7-nav-center>Todo List</f7-nav-center>     
           <f7-nav-right>
             <f7-link icon-f7="add" open-popup="#popup-new"></f7-link>
-          </f7-nav-right>
+           </f7-nav-right>
         </f7-navbar>
         
         <f7-pages />   
+        
       </f7-view>      
       <todo-item/>              
     </f7-views>

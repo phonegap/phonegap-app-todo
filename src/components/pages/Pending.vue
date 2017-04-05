@@ -5,7 +5,7 @@
     <f7-list v-if="todos.length > 0">      
       <f7-list-item v-if="displayItem(todo)" v-for="(todo, key) in todos" :key="key" 
         :checked="(todo.completed ? true : false)"
-        @click="onToggle(key)" :title="todo.todo" swipeout checkbox>        
+        @click="onToggle(todo,key)" :title="todo.todo" swipeout checkbox>        
       <f7-swipeout-actions>
         <f7-swipeout-button close @click="onItemDeleted(todo)" color="red">Delete</f7-swipeout-button>
       </f7-swipeout-actions>        
@@ -23,7 +23,8 @@
       return {
         todos: window.store.todos,
         title: 'Pending Items',
-        sharedState: window.store.state
+        sharedState: window.store.state,
+        isPending: true
       };
     },
     methods: {
@@ -31,8 +32,8 @@
         removeTodo(todo);
       },
       // Toggle completed status
-      onToggle (key) {
-        toggleTodo(key);
+      onToggle (todo, key) {
+        setTimeout(function () { toggleTodo(key); }, 250);
       },
       displayItem (todo) {
         return (!todo.completed) && (todo.category === this.sharedState.selectedCategory || this.sharedState.selectedCategory === 'All');

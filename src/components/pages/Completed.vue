@@ -4,7 +4,7 @@
     <f7-block-title>{{ title }}</f7-block-title>  
     <f7-list v-if="todos.length > 0">
       <f7-list-item v-for="(todo, key) in todos" :key="key" :checked="(todo.completed ? true : false)" v-if="displayItem(todo)"
-      @click="onToggle(key)" :title="todo.todo" swipeout @swipeout:deleted="onItemDeleted(todo)" checkbox>
+      @click="onToggle(todo, key)" :title="todo.todo" swipeout @swipeout:deleted="onItemDeleted(todo)" checkbox>
       <f7-swipeout-actions>
         <f7-swipeout-button close @click="onItemDeleted(todo)" color="red">Delete</f7-swipeout-button>        
       </f7-swipeout-actions>        
@@ -30,8 +30,8 @@
         removeTodo(todo);
       },
       // Toggle completed status
-      onToggle (key) {
-        toggleTodo(key);
+      onToggle (todo, key) {
+        setTimeout(function () { toggleTodo(key); }, 250);
       },
       displayItem (todo) {
         return (todo.completed) && (todo.category === this.sharedState.selectedCategory || this.sharedState.selectedCategory === 'All');

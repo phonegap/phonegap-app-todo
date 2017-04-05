@@ -1,18 +1,28 @@
 <template>
-  <f7-panel left :cover="isMaterial" :reveal="isiOS" layout="dark">
+  <!--<f7-panel left :cover="isMaterial" :reveal="isiOS" :layout="isiOS?'white':'dark'">-->
+  <!-- Always do a reveal effect so we can filter the items by category with the side panel, otherwise covered -->
+  <f7-panel left :cover="isMaterial" reveal :layout="isiOS?'white':'dark'">
     <!-- Left panel content goes here -->
-    <div class="list-block-label">DEFAULT</div> 
-    
+    <f7-block-title>Filter by Category</f7-block-title>
     <f7-list>
-    <f7-list-item title="All" @click="filterCategory('All')"></f7-list-item>
-    <f7-list-item title="No Category" @click="filterCategory('No Category')"></f7-list-item>        
+      <f7-list-group>
+        <f7-list-item title="Default Categories" group-title></f7-list-item>
+        <f7-list-item id='All' title="All" @click="filterCategory('All')"></f7-list-item>
+        <f7-list-item id='No Category' title="No Category" @click="filterCategory('No Category')"></f7-list-item>        
+      </f7-list-group>
     </f7-list>
-    <div class="list-block-label">CUSTOM</div> 
+
     <f7-list>
-    <f7-list-item v-if="(category!='All') && (category!='No Category')" v-for="category in categories" :title="category" @click="filterCategory(category)" :id="category"/>        
+      <f7-list-group>
+        <f7-list-item title="Custom Categories" group-title></f7-list-item>
+        <f7-list-item v-if="(category!='All') && (category!='No Category')" 
+        v-for="category in categories" :title="category" @click="filterCategory(category)" 
+        :id="category"/>        
+      </f7-list-group>
     </f7-list>
   </f7-panel>
 </template>
+
 <script>
   export default {
     name: 'left-panel',
@@ -45,6 +55,12 @@
       },
       platformClass () {
         return window.isiOS ? 'ios' : 'material';
+      }
+    },
+    mounted () {
+      var allElem = document.getElementById('All');
+      if (allElem != null) {
+        allElem.setAttribute('class', 'bg-blue');
       }
     }
   };

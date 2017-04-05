@@ -53,7 +53,7 @@ export function removeTodo (todo) {
 }
 
 export function toggleTodo (key) {
-  store.todos[key].completed = !store.todos[key].completed;
   console.log('Toggle item with key of ' + key);
+  store.todos[key].completed = !store.todos[key].completed;
   saveTodosToLocalStorage();
 }
