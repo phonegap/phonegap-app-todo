@@ -14,8 +14,8 @@ Object.keys(baseWebpackConfig.entry).forEach((name) => {
 });
 
 // var ServiceWorkerWebpackPlugin = require('serviceworker-webpack-plugin');
-var path = require('path');
-var SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin');
+// var path = require('path');
+// var SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin');
  
 
 module.exports = merge(baseWebpackConfig, {
@@ -32,21 +32,21 @@ module.exports = merge(baseWebpackConfig, {
     new webpack.DefinePlugin({
       'process.env': config.dev.env,
     }),
-    // new ServiceWorkerWebpackPlugin({
-    //   entry: 'src/sw.js'
-    // }),
-    new SWPrecacheWebpackPlugin(
-      {
-        cacheId: 'phonegap-todos',
-        filename: 'my-service-worker.js',
-        maximumFileSizeToCacheInBytes: 4194304,
-        minify: true,
-        runtimeCaching: [{
-          handler: 'cacheFirst',
-          urlPattern: /[.]mp3$/,
-        }],
-      }
-    ),
+    // // new ServiceWorkerWebpackPlugin({
+    // //   entry: 'src/sw.js'
+    // // }),
+    // new SWPrecacheWebpackPlugin(
+    //   {
+    //     cacheId: 'phonegap-todos',
+    //     filename: 'my-service-worker.js',
+    //     maximumFileSizeToCacheInBytes: 4194304,
+    //     minify: true,
+    //     runtimeCaching: [{
+    //       handler: 'cacheFirst',
+    //       urlPattern: /[.]mp3$/,
+    //     }],
+    //   }
+    // ),
     // https://github.com/glenjamin/webpack-hot-middleware#installation--usage
     new webpack.optimize.OccurrenceOrderPlugin(),
     new webpack.HotModuleReplacementPlugin(),
