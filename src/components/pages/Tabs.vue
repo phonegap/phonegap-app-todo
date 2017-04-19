@@ -1,12 +1,12 @@
 <template>
-  <f7-page tabbar-fixed :with-subnavbar="isMaterial">
+  <f7-page id="mainPage" data-page="mainPage" tabbar-fixed :with-subnavbar="isMaterial">
     <f7-navbar sliding>
       <f7-nav-left>
         <f7-link icon-f7="bars" open-panel="left"></f7-link>
       </f7-nav-left>
       <f7-nav-center>Todo List</f7-nav-center>
       <f7-nav-right>
-        <f7-link icon-f7="add" open-popup="#popup-new"></f7-link>
+        <f7-link icon-f7="add" open-popup="#popup-new"></f7-link>        
       </f7-nav-right>
   </f7-navbar>
 
@@ -42,7 +42,8 @@
     },
     data () {
       return {
-        selCategory: window.store.selectedCategory
+        selCategory: window.store.selectedCategory,
+        sharedState: window.store.state
       };
     },
     computed: {

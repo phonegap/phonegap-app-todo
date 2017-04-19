@@ -15,6 +15,7 @@
     <!-- Required meta tags-->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
+    
     <!-- PWA - Add to home screen settings for Safari on iOS -->    
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
@@ -28,9 +29,12 @@
     <meta name="msapplication-TileColor" content="#2F3BA2">
     
     <!-- PWA Manifest -->
-     <link rel="manifest" href="/static/manifest.json">
+    <link rel="manifest" href="/static/manifest.json">
               
     <title>My App</title>
+    <style>
+      [v-cloak] { display: none; }
+    </style>
   </head>
   <body>
     <div id="app"></div>

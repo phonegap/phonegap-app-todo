@@ -42,33 +42,46 @@ import { todoStorage } from './utils/todos';
 if ('serviceWorker' in navigator) {
   console.log('Calling to register service worker ');
   navigator.serviceWorker.register('./my-service-worker.js');
-} else console.log('Srrvice worker not found in navigator');
+} else console.log('Service worker not found in navigator');
 
 window.store = {
   todos: todoStorage.fetch(),
   state: {
-    selectedCategory: 'All',
+    selectedCategory: 'ALL',
     categories: todoStorage.categories
+    // selectedItem: {id: todoStorage.fetch().length,
+    //   title: '',
+    //   category: 'NO CATEGORY',
+    //   desc: '',
+    //   highlight: false,
+    //   urgent: false,
+    //   completed: false
+    // },
+    // isUpdate: false
+  },
+  changeSelectedItem (item) {
+    this.state.selectedItem = item;
   },
   changeCategory (category) {
     this.state.selectedCategory = category;
     console.log('Changed category to ' + category + ' store category is ' + this.state.selectedCategory);
-  },
-  getCategories () {
-    this.todos.filter((todo) => {
-      console.log('Filtering the Todo category ' + todo.category);
-      if (this.state.categories.indexOf(todo.category) === -1) {
-        this.state.categories.push(todo.category);
-      }
-    });
   }
+  // },
+  // getCategories () {
+  //   this.todos.filter((todo) => {
+  //     console.log('Filtering the Todo category ' + todo.category);
+  //     if (this.state.categories.indexOf(todo.category.toUpperCase()) === -1) {
+  //       this.state.categories.push(todo.category.toUpperCase());
+  //     }
+  //   });
+  // }
 };
 
 // Init F7 Vue Plugin
 Vue.use(Framework7Vue);
 
 // Init App
-new Vue({ // eslint-disable-line no-new
+var vu1 = new Vue({ // eslint-disable-line no-new
   el: '#app',
   template: '<app />',
   // Init Framework7 by passing parameters here
@@ -82,14 +95,11 @@ new Vue({ // eslint-disable-line no-new
     pushStateNoAnimation: true
   },
   // app initial state
-  data: {
-    newTodo: '',
-    editedTodo: null,
-    visibility: 'all'
-  },
-  // App root methods
-  methods: {
-  },
+  // data: {
+  //   newTodo: '',
+  //   editedTodo: null,
+  //   visibility: 'all'
+  // },
   // Register App Component
   components: {
     app: App

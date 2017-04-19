@@ -10,6 +10,7 @@ var HtmlWebpackPlugin = require('html-webpack-plugin');
 var env = process.env.NODE_ENV === 'testing'
   ? require('../config/test.env')
   : config.build.env;
+var SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin');
 
 var webpackConfig = merge(baseWebpackConfig, {
   module: {
@@ -57,6 +58,18 @@ var webpackConfig = merge(baseWebpackConfig, {
       // necessary to consistently work with multiple chunks via CommonsChunkPlugin
       chunksSortMode: 'dependency',
     }),
+    new SWPrecacheWebpackPlugin(
+      {
+        cacheId: 'phonegap-todos',
+        filename: 'my-service-worker.js',
+        maximumFileSizeToCacheInBytes: 4194304,
+        minify: true,
+        runtimeCaching: [{
+          handler: 'cacheFirst',
+          urlPattern: /[.]mp3$/,
+        }],
+      }
+    ),
     // split vendor js into its own file
     new webpack.optimize.CommonsChunkPlugin({
       name: 'vendor',

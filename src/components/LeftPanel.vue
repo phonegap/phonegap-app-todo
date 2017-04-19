@@ -3,20 +3,22 @@
   <!-- Always do a reveal effect so we can filter the items by category with the side panel, otherwise covered -->
   <f7-panel left :cover="isMaterial" reveal :layout="isiOS?'white':'dark'">
     <!-- Left panel content goes here -->
-    <f7-block-title>Filter by Category</f7-block-title>
     <f7-list>
       <f7-list-group>
         <f7-list-item title="Default Categories" group-title></f7-list-item>
-        <f7-list-item id='All' title="All" @click="filterCategory('All')"></f7-list-item>
-        <f7-list-item id='No Category' title="No Category" @click="filterCategory('No Category')"></f7-list-item>        
+        <f7-list-item id='ALL' title="ALL" 
+        :class="[sharedState.selectedCategory==='ALL' ? 'bg-blue' : '']" @click="filterCategory('ALL')"/>              
+        <f7-list-item id='NO CATEGORY' title="NO CATEGORY" @click="filterCategory('NO CATEGORY')" 
+        :class="[sharedState.selectedCategory==='NO CATEGORY' ? 'bg-blue' : '']"/>
       </f7-list-group>
     </f7-list>
 
     <f7-list>
       <f7-list-group>
         <f7-list-item title="Custom Categories" group-title></f7-list-item>
-        <f7-list-item v-if="(category!='All') && (category!='No Category')" 
-        v-for="category in categories" :title="category" @click="filterCategory(category)" 
+        <f7-list-item v-if="(category!='ALL') && (category!='NO CATEGORY')"
+        v-for="category in categories" v-bind:class="[(category===sharedState.selectedCategory) ? 'bg-blue' : '']" :title="category" 
+        @click="filterCategory(category)" 
         :id="category"/>        
       </f7-list-group>
     </f7-list>
@@ -31,22 +33,13 @@
         sharedState: window.store.state,
         isMaterial: window.isMaterial,
         isiOS: window.isiOS,
-        categories: window.store.state.categories,
-        prevCat: 'All'
+        categories: window.store.state.categories
       };
     },
     methods: {
       filterCategory (cat) {
-        var elem2 = document.getElementById(this.prevCat);
-        if (elem2 != null) {
-          elem2.removeAttribute('class', 'bg-blue');
-        }
+        this.isActive = true;
         window.store.changeCategory(cat);
-        var elem = document.getElementById(cat);
-        if (elem != null) {
-          elem.setAttribute('class', 'bg-blue');
-        }
-        this.prevCat = cat;
       }
     },
     computed: {
@@ -58,10 +51,10 @@
       }
     },
     mounted () {
-      var allElem = document.getElementById('All');
-      if (allElem != null) {
-        allElem.setAttribute('class', 'bg-blue');
-      }
+      // var allElem = document.getElementById('ALL');
+      // if (allElem != null) {
+      //   allElem.setAttribute('class', 'bg-blue');
+      // }
     }
   };
 </script>  

@@ -14,7 +14,7 @@ Object.keys(baseWebpackConfig.entry).forEach((name) => {
 });
 
 // var ServiceWorkerWebpackPlugin = require('serviceworker-webpack-plugin');
-var path = require('path');
+// var path = require('path');
 var SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin');
  
 
